@@ -1,0 +1,6 @@
+{
+    "baseURL": "https://api.themoviedb.org/3",
+    "apiKey": "f971d23887ba9d2ef65f356bdbd234ed",
+    "baseIMG": "https://image.tmdb.org/t/p/original/"
+
+}
