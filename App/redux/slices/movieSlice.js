@@ -5,7 +5,7 @@ const initialState = {
   movieList: [],
   movieDetails: {}
 };
-export const movieSlice = createSlice({
+const movieSlice = createSlice({
   name: 'movie',
   initialState,
   reducers: {
@@ -19,7 +19,6 @@ export const movieSlice = createSlice({
       state.movieList = action.payload;
     },
     onGetMovieDetails: (state, action) => {
-      console.log('🚀  action.payload:', action.payload);
       state.movieDetails[action.payload.movieId] = action.payload.data;
     }
   }
@@ -28,5 +27,15 @@ export const movieSlice = createSlice({
 export const {onAddFavourite, onDeleteFavourite, onGetMovies, onGetMovieDetails} =
   movieSlice.actions;
 export const selectMovie = state => state.movie;
+
+//extraReducers
+movieSlice.extraReducers = builder => {
+  builder.addCase(onAddFavourite, (state, action) => {
+    persistStore(state);
+  });
+  builder.addCase(onDeleteFavourite, (state, action) => {
+    persistStore(state);
+  });
+};
 
 export default movieSlice.reducer;
